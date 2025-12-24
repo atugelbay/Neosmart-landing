@@ -11,26 +11,32 @@ const Pricing: React.FC = () => {
   const plans = [
     {
       name: 'БАЗОВЫЙ',
-      description: 'Для небольших центров, которые хотят навести порядок в процессах.',
-      price: 'от 15 000 ₸ / мес.',
+      slogan: 'Всё необходимое для старта',
+      description: 'Идеален для частных преподавателей',
+      price: 'от 25 000 ₸ / мес.',
       features: [
-        'Учет учеников и групп',
-        'Умное расписание',
-        'Абонементы и посещаемость',
-        'Базовый учет финансов',
+        'Небольшие центры до 50 студентов',
+        'Один филиал',
+        'Полный функционал без ограничений по возможностям',
+        'Частный репетитор с группой студентов',
+        'Небольшая языковая школа',
+        'Студия раннего развития',
       ],
       cta: 'Попробовать',
       variant: 'secondary'
     },
     {
       name: 'СТАНДАРТ',
-      description: 'Для растущих школ, которым нужен полный контроль и аналитика.',
-      price: 'от 25 000 ₸ / мес.',
+      slogan: 'Для растущего бизнеса',
+      description: 'Средние образовательные центры',
+      price: 'от 50 000 ₸ / мес.',
       features: [
-        'Все возможности тарифа "Базовый"',
-        'Финансовые отчеты для руководителя',
-        'CRM для учета заявок (лидов)',
-        'Уведомления для клиентов и сотрудников',
+        'До 200 студентов',
+        'До 3 филиалов',
+        'Полный функционал для масштабирования',
+        'Сеть языковых школ (2-3 филиала)',
+        'Образовательный центр с несколькими направлениями',
+        'Детский развивающий центр с расширением',
       ],
       cta: 'Запросить демо',
       variant: 'primary',
@@ -38,15 +44,36 @@ const Pricing: React.FC = () => {
     },
     {
       name: 'ПРО',
-      description: 'Для крупных центров и сетей с особыми требованиями.',
-      price: 'Индивидуально',
+      slogan: 'Для крупного бизнеса',
+      description: 'Крупные сети и франшизы',
+      price: 'от 120 000 ₸ / мес.',
       features: [
-        'Все возможности тарифа "Стандарт"',
-        'Расширенные роли доступа',
+        'До 1000 студентов, 50 пользователей, 10 филиалов',
         'Приоритетная поддержка',
-        'Помощь с переносом данных из других систем',
+        'Все интеграции и расширенные возможности',
+        'Образовательная франшиза (5-10 филиалов)',
+        'Крупная сеть центров',
+        'Региональная сеть школ',
       ],
       cta: 'Подобрать тариф',
+      variant: 'secondary'
+    },
+    {
+      name: 'ENTERPRISE',
+      slogan: 'Индивидуальные решения',
+      description: 'Очень крупные сети, международные франшизы',
+      price: 'Индивидуально',
+      features: [
+        'Без ограничений',
+        'Персональный менеджер и 24/7 поддержка',
+        'Кастомные интеграции и выделенный сервер',
+        'SLA гарантии',
+        'Международная образовательная франшиза',
+        'Крупная корпорация с образовательными программами',
+        'Сеть с сотнями филиалов',
+        'Государственные образовательные учреждения',
+      ],
+      cta: 'Связаться с нами',
       variant: 'secondary'
     },
   ];
@@ -65,21 +92,36 @@ const Pricing: React.FC = () => {
         <p className="mt-4 text-lg text-[#A0A7B4]">Выберите план, который растет вместе с вами. Цена зависит от количества активных учеников.</p>
       </AnimatedSection>
 
-      <AnimatedSection className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+      <AnimatedSection className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
         {plans.map((plan, index) => (
-          <div key={index} className={`bg-white/5 border rounded-2xl p-8 flex flex-col relative ${plan.popular ? 'border-[#7CF2C2]' : 'border-white/10'}`}>
+          <div key={index} className={`bg-white/5 border rounded-2xl p-8 flex flex-col relative min-w-0 ${plan.popular ? 'border-[#7CF2C2]' : 'border-white/10'}`}>
             {plan.popular && <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-[#7CF2C2] text-[#0B0F1A] px-4 py-1 rounded-full text-sm font-semibold">САМЫЙ ПОПУЛЯРНЫЙ</div>}
             <h3 className="text-xl font-bold text-white">{plan.name}</h3>
-            <p className="text-[#A0A7B4] mt-2 h-12">{plan.description}</p>
-            <div className="mt-6">
-              <span className="text-4xl font-bold text-white">{plan.price.split(' ')[0]}</span>
-              <span className="text-[#A0A7B4] ml-2">{plan.price.split(' ').slice(1).join(' ')}</span>
+            {plan.slogan && <p className="text-[#7CF2C2] text-sm font-medium mt-1">{plan.slogan}</p>}
+            <p className="text-[#A0A7B4] mt-3 text-sm">{plan.description}</p>
+            <div className="mt-6 min-w-0">
+              {plan.price === 'Индивидуально' ? (
+                <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white leading-tight break-words">Индивидуально</span>
+              ) : (
+                (() => {
+                  const parts = plan.price.split(' ');
+                  const priceParts = parts.slice(1, -3); // число (например, "25", "000")
+                  const currencyParts = parts.slice(-3); // "₸ / мес."
+                  return (
+                    <div className="flex items-baseline flex-wrap">
+                      <span className="text-sm md:text-base text-[#A0A7B4] mr-2">от</span>
+                      <span className="text-4xl font-bold text-white">{priceParts.join(' ')}</span>
+                      <span className="text-[#A0A7B4] ml-2 text-lg">{currencyParts.join(' ')}</span>
+                    </div>
+                  );
+                })()
+              )}
             </div>
-            <ul className="mt-8 space-y-4 flex-grow">
+            <ul className="mt-8 space-y-3 flex-grow">
               {plan.features.map((feature, i) => (
                 <li key={i} className="flex items-start">
-                  <CheckIcon className="w-5 h-5 text-[#7CF2C2] mr-3 mt-1 flex-shrink-0" />
-                  <span className="text-white/90">{feature}</span>
+                  <CheckIcon className="w-5 h-5 text-[#7CF2C2] mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-white/90 text-sm">{feature}</span>
                 </li>
               ))}
             </ul>

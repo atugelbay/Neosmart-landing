@@ -14,11 +14,13 @@ import Footer from './components/Footer';
 
 const App: React.FC = () => {
   return (
-    <div className="bg-[#0B0F1A] text-white overflow-x-hidden relative">
+    <div className="bg-[#0B0F1A] text-white overflow-x-hidden relative min-h-screen">
       {/* Background Gradient Glows */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-[#5B7CFF] opacity-10 rounded-full filter blur-3xl animate-blob"></div>
-      <div className="absolute top-96 right-0 w-96 h-96 bg-[#7CF2C2] opacity-10 rounded-full filter blur-3xl animate-blob animation-delay-2000"></div>
-      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#5B7CFF] opacity-10 rounded-full filter blur-3xl animate-blob animation-delay-4000"></div>
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-[#5B7CFF] opacity-10 rounded-full filter blur-3xl animate-blob"></div>
+        <div className="absolute top-96 right-0 w-96 h-96 bg-[#7CF2C2] opacity-10 rounded-full filter blur-3xl animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#5B7CFF] opacity-10 rounded-full filter blur-3xl animate-blob animation-delay-4000"></div>
+      </div>
       
       <div className="relative z-10">
         <Header />
@@ -37,7 +39,7 @@ const App: React.FC = () => {
         <Footer />
       </div>
 
-      <style jsx global>{`
+      <style>{`
         @keyframes blob {
           0% {
             transform: translate(0px, 0px) scale(1);
