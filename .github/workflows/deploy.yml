@@ -1,0 +1,22 @@
+name: Deploy landing to server
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: 82.115.43.3
+          username: ubuntu
+          key: ${{ secrets.DEPLOY_KEY }}
+          script: |
+            bash /home/ubuntu/deploy-landing.sh
