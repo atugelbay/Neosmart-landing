@@ -5,11 +5,11 @@ import ScheduleIcon from './icons/ScheduleIcon';
 import SubscriptionIcon from './icons/SubscriptionIcon';
 import FinanceIcon from './icons/FinanceIcon';
 
-// Import videos
-import videoAttendance from '../screens/Отметить посещаемость на уроке в расписании.mp4';
-import videoSchedule from '../screens/Запланировать индивидуальный урок в расписании.mp4';
-import videoSubscription from '../screens/Добавление абонемента студенту.mp4';
-import videoPayment from '../screens/Добавить оплату наличными для студента.mp4';
+// Video paths from public folder
+const videoAttendance = '/screens/Отметить посещаемость на уроке в расписании.mp4';
+const videoSchedule = '/screens/Запланировать индивидуальный урок в расписании.mp4';
+const videoSubscription = '/screens/Добавление абонемента студенту.mp4';
+const videoPayment = '/screens/Добавить оплату наличными для студента.mp4';
 
 const solutions = [
     {
