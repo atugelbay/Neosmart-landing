@@ -2,61 +2,77 @@ import React from 'react';
 import AnimatedSection from './AnimatedSection';
 import Button from './Button';
 import SetupIcon from './icons/SetupIcon';
-import DataWorkIcon from './icons/DataWorkIcon';
-import ControlIcon from './icons/ControlIcon';
+import ScheduleIcon from './icons/ScheduleIcon';
+import DemoIcon from './icons/DemoIcon';
+import { useModal } from '../App';
 
 const Onboarding: React.FC = () => {
-  const steps = [
+  const { openModal } = useModal();
+  const features = [
     {
-      day: 'День 1',
-      title: 'Подключение и настройка',
-      description: 'Мы создаем ваш аккаунт и помогаем перенести базу учеников из Excel или другой CRM. Вы сразу начинаете работать в готовой системе, а не разбираться в настройках.',
-      icon: <SetupIcon className="w-8 h-8" />,
+      icon: <SetupIcon className="w-6 h-6" />,
+      title: 'Интуитивный интерфейс',
+      description: 'Никаких сложных инструкций. Всё понятно с первого взгляда — как в приложениях, которыми вы пользуетесь каждый день.',
     },
     {
-      day: 'День 2',
-      title: 'Работа с реальными данными',
-      description: 'Ваши администраторы уже ведут запись, отмечают посещения и принимают оплаты в Neosmart. Преподаватели видят свое актуальное расписание.',
-      icon: <DataWorkIcon className="w-8 h-8" />,
+      icon: <ScheduleIcon className="w-6 h-6" />,
+      title: 'Работайте с первой минуты',
+      description: 'Создайте аккаунт и сразу добавляйте студентов, ставьте расписание, принимайте оплаты. Без долгих настроек.',
     },
     {
-      day: 'День 3',
-      title: 'Контроль и прозрачность',
-      description: 'Вы видите полную картину бизнеса: отчеты по оплатам, загрузке групп и задолженностям. Вы управляете центром на основе цифр, а не догадок.',
-      icon: <ControlIcon className="w-8 h-8" />,
+      icon: <DemoIcon className="w-6 h-6" />,
+      title: 'Подсказки везде',
+      description: 'Система сама подскажет что делать дальше. А если вопросы — мы всегда на связи и поможем разобраться.',
     },
   ];
 
   return (
-    <section id="onboarding" className="py-20 md:py-28 bg-white/[.02] rounded-3xl my-10">
+    <section id="onboarding" className="py-20 md:py-28">
       <AnimatedSection className="text-center max-w-3xl mx-auto mb-16 px-4">
-        <h2 className="text-3xl md:text-4xl font-bold">Начать с Neosmart — проще, чем кажется</h2>
-        <p className="mt-4 text-lg text-[#A0A7B4]">Мы полностью берем на себя процесс внедрения, чтобы вы не отвлекались от управления центром и не останавливали работу.</p>
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#7CF2C2]/10 border border-[#7CF2C2]/20 mb-6">
+          <span className="text-[#7CF2C2] text-sm font-medium">Просто начните</span>
+        </div>
+        <h2 className="text-3xl md:text-4xl font-bold text-white">
+          Откройте и работайте —
+          <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5B7CFF] to-[#7CF2C2]">
+            без обучения
+          </span>
+        </h2>
+        <p className="mt-4 text-lg text-[#A0A7B4]">
+          Neosmart настолько простой, что вы разберётесь сами. Серьёзно.
+        </p>
       </AnimatedSection>
 
-      <AnimatedSection className="relative px-4">
-        <div className="absolute left-1/2 top-12 bottom-12 w-0.5 bg-white/10 hidden lg:block"></div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {steps.map((step, index) => (
-            <div key={index} className="relative p-8 bg-white/5 border border-white/10 rounded-2xl">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#5B7CFF] to-[#7CF2C2] text-[#0B0F1A] rounded-lg flex items-center justify-center flex-shrink-0">
-                  {step.icon}
-                </div>
-                <div>
-                  <p className="font-semibold text-[#A0A7B4]">{step.day}</p>
-                  <h3 className="text-xl font-bold text-white">{step.title}</h3>
-                </div>
+      <AnimatedSection className="px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {features.map((feature, index) => (
+            <div 
+              key={index} 
+              className="relative p-6 bg-white/[0.03] border border-white/10 rounded-2xl hover:border-white/20 transition-all group"
+            >
+              <div className="w-12 h-12 bg-gradient-to-br from-[#5B7CFF] to-[#7CF2C2] rounded-xl flex items-center justify-center text-[#0B0F1A] mb-4">
+                {feature.icon}
               </div>
-              <p className="mt-4 text-[#A0A7B4]">{step.description}</p>
+              <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
+              <p className="text-[#A0A7B4] text-sm leading-relaxed">{feature.description}</p>
             </div>
           ))}
         </div>
       </AnimatedSection>
-      
-      <AnimatedSection className="text-center mt-20 px-4">
-         <p className="text-lg text-[#A0A7B4] mb-6 max-w-2xl mx-auto">Готовы увидеть, как Neosmart наведет порядок в вашем центре?</p>
-         <Button variant="secondary" className="px-8 py-3">Посмотреть, как это работает</Button>
+
+      <AnimatedSection className="text-center mt-12 px-4">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="https://app.neosmart.kz" target="_blank" rel="noopener noreferrer">
+            <Button variant="primary" className="px-8 py-3">
+              Попробовать бесплатно
+            </Button>
+          </a>
+          <Button variant="secondary" className="px-8 py-3" onClick={openModal}>
+            Запросить звонок
+          </Button>
+        </div>
+        <p className="mt-3 text-sm text-[#6B6B6B]">Регистрация за 30 секунд</p>
       </AnimatedSection>
     </section>
   );

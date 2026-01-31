@@ -1,8 +1,12 @@
 import React from 'react';
 
 const KidsCenterIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="m12 2 2.83 8.53 8.54 2.83L14.83 12l8.54 2.83-8.53 2.83L12 22l-2.83-8.53L.63 14.83 9.17 12 .63 9.17 9.17 6.34 12 2Z" />
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M9 12h.01" />
+    <path d="M15 12h.01" />
+    <path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5" />
+    <path d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5.5 4.8 1.3" />
+    <path d="M17 3c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2Z" />
   </svg>
 );
 
