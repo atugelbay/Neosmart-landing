@@ -133,9 +133,6 @@ const VideoCard: React.FC<VideoCardProps> = ({ solution }) => {
           className={`w-full h-auto block transition-opacity duration-300 ${isReady ? 'opacity-100' : 'opacity-0'}`}
         />
         {/* Overlay для закрытия лого Arcade */}
-        <div className="absolute bottom-2 right-2 w-9 h-9 bg-[#0B0F1A] rounded-lg flex items-center justify-center">
-          <img src="/logo/logo.png" alt="" className="w-5 h-5" />
-        </div>
       </div>
       <div className="p-6 pt-5 space-y-2">
         <div className="flex items-center gap-3">
