@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://neosmart.kz/sitemap.xml
+
+# Disallow admin and API paths (if any)
+Disallow: /api/
+
+# Host
+Host: https://neosmart.kz
