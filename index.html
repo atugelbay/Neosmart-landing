@@ -82,11 +82,12 @@
             window.location = url;
           }
         };
+        var transaction_id = 'TX_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
         gtag('event', 'conversion', {
           'send_to': 'AW-17925890772/JIqrCN3CtfEbENTF3eNC',
           'value': 1.0,
           'currency': 'USD',
-          'transaction_id': '',
+          'transaction_id': transaction_id,
           'event_callback': callback
         });
         return false;
