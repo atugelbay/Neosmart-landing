@@ -148,7 +148,16 @@ const Pricing: React.FC = () => {
 
               {/* CTA */}
               <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-                <a href="https://app.neosmart.kz" target="_blank" rel="noopener noreferrer">
+                <a 
+                  href="https://app.neosmart.kz" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    if (typeof window !== 'undefined' && (window as any).gtag_report_conversion) {
+                      (window as any).gtag_report_conversion();
+                    }
+                  }}
+                >
                   <Button variant="primary" className="px-6 py-3">
                     Начать бесплатно
                   </Button>

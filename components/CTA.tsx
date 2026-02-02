@@ -15,7 +15,16 @@ const CTA: React.FC = () => {
             Попробуйте Neosmart и посмотрите, сколько времени и денег вы сэкономите, когда расписание, финансы и ученики находятся под полным контролем.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://app.neosmart.kz" target="_blank" rel="noopener noreferrer">
+            <a 
+              href="https://app.neosmart.kz" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={() => {
+                if (typeof window !== 'undefined' && (window as any).gtag_report_conversion) {
+                  (window as any).gtag_report_conversion();
+                }
+              }}
+            >
               <Button variant="primary" className="text-lg px-8 py-4">
                 Начать бесплатно
               </Button>

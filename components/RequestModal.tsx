@@ -40,6 +40,11 @@ const RequestModal: React.FC<RequestModalProps> = ({ isOpen, onClose }) => {
       setIsSuccess(true);
       setFormData({ name: '', phone: '', company: '' });
       
+      // Google Ads conversion tracking
+      if (typeof window !== 'undefined' && (window as any).gtag_report_conversion) {
+        (window as any).gtag_report_conversion();
+      }
+      
       // Закрыть через 2 секунды
       setTimeout(() => {
         setIsSuccess(false);

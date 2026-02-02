@@ -549,7 +549,16 @@ const Hero: React.FC = () => {
 
           {/* Buttons */}
           <div className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4">
-            <a href="https://app.neosmart.kz" target="_blank" rel="noopener noreferrer">
+            <a 
+              href="https://app.neosmart.kz" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={() => {
+                if (typeof window !== 'undefined' && (window as any).gtag_report_conversion) {
+                  (window as any).gtag_report_conversion();
+                }
+              }}
+            >
               <Button variant="primary" className="w-full sm:w-auto">
                 Попробовать бесплатно
               </Button>

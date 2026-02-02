@@ -63,7 +63,16 @@ const Onboarding: React.FC = () => {
 
       <AnimatedSection className="text-center mt-12 px-4">
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="https://app.neosmart.kz" target="_blank" rel="noopener noreferrer">
+          <a 
+            href="https://app.neosmart.kz" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            onClick={() => {
+              if (typeof window !== 'undefined' && (window as any).gtag_report_conversion) {
+                (window as any).gtag_report_conversion();
+              }
+            }}
+          >
             <Button variant="primary" className="px-8 py-3">
               Попробовать бесплатно
             </Button>
