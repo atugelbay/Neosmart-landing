@@ -120,20 +120,20 @@ const Pricing: React.FC = () => {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#7CF2C2] opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#7CF2C2]"></span>
                 </span>
-                <span className="text-[#7CF2C2] text-sm font-medium">Early Access</span>
+                <span className="text-[#7CF2C2] text-sm font-medium">Тариф Enterprise</span>
               </div>
 
               <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-                Полный доступ
+                Первый месяц —
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5B7CFF] to-[#7CF2C2]">
-                  бесплатно
+                  полный доступ бесплатно
                 </span>
               </h3>
 
               <p className="text-lg text-[#A0A7B4] mb-8 max-w-md mx-auto lg:mx-0">
-                Мы только запустились и приглашаем вас стать одними из первых пользователей. 
-                Все функции — без ограничений.
+                Попробуйте тариф Enterprise без ограничений: без лимитов по студентам, филиалам и пользователям. 
+                После месяца — по стандартным условиям тарифа.
               </p>
 
               {/* Фичи в две колонки */}
@@ -178,7 +178,7 @@ const Pricing: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-[#5B7CFF]/20 to-[#7CF2C2]/20 blur-3xl -z-10"></div>
               
               {/* Карточка */}
-              <div className="bg-[#12151F] border border-white/10 rounded-2xl p-8 relative overflow-hidden">
+              <div className="bg-[#12151F] border border-white/10 rounded-2xl p-8 relative overflow-visible">
                 {/* Декор */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#7CF2C2]/10 rounded-full blur-2xl"></div>
                 
@@ -187,10 +187,10 @@ const Pricing: React.FC = () => {
                   <div className="flex items-center justify-between mb-6">
                     <div>
                       <p className="text-[#A0A7B4] text-sm">Ваш тариф</p>
-                      <h4 className="text-2xl font-bold text-white">Early Bird</h4>
+                      <h4 className="text-2xl font-bold text-white">Enterprise</h4>
                     </div>
                     <div className="px-3 py-1 rounded-full bg-[#7CF2C2]/20 border border-[#7CF2C2]/30">
-                      <span className="text-[#7CF2C2] text-sm font-medium">Активен</span>
+                      <span className="text-[#7CF2C2] text-sm font-medium">Первый месяц бесплатно</span>
                     </div>
                   </div>
 
@@ -199,9 +199,9 @@ const Pricing: React.FC = () => {
                     <div className="flex items-baseline gap-2">
                       <span className="text-6xl font-bold text-white">0</span>
                       <span className="text-2xl text-[#7CF2C2]">₸</span>
-                      <span className="text-[#A0A7B4]">/ мес</span>
+                      <span className="text-[#A0A7B4]">/ первый месяц</span>
                     </div>
-                    <p className="text-[#A0A7B4] text-sm mt-2">Вместо платных тарифов</p>
+                    <p className="text-[#A0A7B4] text-sm mt-2">Далее — по тарифу Enterprise</p>
                   </div>
 
                   {/* Включено */}
@@ -212,7 +212,7 @@ const Pricing: React.FC = () => {
                       '∞ Филиалов', 
                       '∞ Пользователей',
                       'Все интеграции',
-                      'Приоритетная поддержка',
+                      'Приоритетная поддержка 24/7',
                     ].map((item, i) => (
                       <div key={i} className="flex items-center gap-3">
                         <div className="w-5 h-5 rounded-full bg-[#7CF2C2]/20 flex items-center justify-center">

@@ -12,6 +12,9 @@ import FAQ from './components/FAQ';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 import RequestModal from './components/RequestModal';
+import Preloader from './components/Preloader';
+import HexagonPattern from './components/HexagonPattern';
+import ScrollGradient from './components/ScrollGradient';
 
 // Modal Context
 interface ModalContextType {
@@ -73,14 +76,14 @@ const App: React.FC = () => {
 
   return (
     <ModalContext.Provider value={{ openModal, closeModal }}>
-      <div className="bg-[#0B0F1A] text-white relative min-h-screen overflow-x-clip">
+      <div className="text-white relative min-h-screen overflow-x-clip">
+        <Preloader />
         {/* Global Cursor Glow */}
         <GlobalCursorGlow />
-        {/* Background Gradient Glows */}
+        {/* Фон: один «путь» сверху вниз — при скролле меняется (небо → земля), поверх mesh + гексагоны */}
         <div className="fixed inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-[#5B7CFF] opacity-10 rounded-full filter blur-3xl animate-blob"></div>
-          <div className="absolute top-96 right-0 w-96 h-96 bg-[#7CF2C2] opacity-10 rounded-full filter blur-3xl animate-blob animation-delay-2000"></div>
-          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#5B7CFF] opacity-10 rounded-full filter blur-3xl animate-blob animation-delay-4000"></div>
+          <ScrollGradient />
+          <HexagonPattern />
         </div>
         
         <div className="relative z-10">
@@ -102,32 +105,6 @@ const App: React.FC = () => {
 
         {/* Request Modal */}
         <RequestModal isOpen={isModalOpen} onClose={closeModal} />
-
-        <style>{`
-          @keyframes blob {
-            0% {
-              transform: translate(0px, 0px) scale(1);
-            }
-            33% {
-              transform: translate(30px, -50px) scale(1.1);
-            }
-            66% {
-              transform: translate(-20px, 20px) scale(0.9);
-            }
-            100% {
-              transform: translate(0px, 0px) scale(1);
-            }
-          }
-          .animate-blob {
-            animation: blob 7s infinite;
-          }
-          .animation-delay-2000 {
-            animation-delay: 2s;
-          }
-          .animation-delay-4000 {
-            animation-delay: 4s;
-          }
-        `}</style>
       </div>
     </ModalContext.Provider>
   );

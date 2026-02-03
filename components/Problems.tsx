@@ -30,7 +30,7 @@ const Problems: React.FC = () => {
         
       <AnimatedSection className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
         {problems.map((item, index) => (
-          <div key={index} className="relative pl-12">
+          <div key={index} className="relative pl-12 border-0">
              <div className="absolute top-0 left-0 w-8 h-8 flex items-center justify-center bg-gradient-to-br from-[#5B7CFF] to-[#7CF2C2] text-[#0B0F1A] rounded-lg font-bold text-base">
                {index + 1}
              </div>

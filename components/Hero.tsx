@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import Button from './Button';
 import AnimatedSection from './AnimatedSection';
 
 // Animated Counter Hook
@@ -510,7 +509,7 @@ const Hero: React.FC = () => {
   const heroRef = useRef<HTMLElement>(null);
   const transform = useTilt(tiltRef, heroRef);
   
-  const subtitle = "CRM-система для образовательных центров. Автоматизируйте расписание, платежи и посещения легко и быстро.";
+  const subtitle = "Расписание, платежи и посещения — в одном месте. Без Excel и хаоса.";
   const { displayText, isComplete } = useTypingEffect(subtitle, 30, 800);
 
   return (
@@ -534,12 +533,9 @@ const Hero: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* Left - Text */}
         <AnimatedSection className="text-center lg:text-left">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]">
-            <span className="text-white">Порядок в бизнесе -</span>
-            <br />
-            <AnimatedGradientText>
-              больше времени на рост
-            </AnimatedGradientText>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15]">
+            <span className="text-white">Наведите порядок в расписании и финансах вашей школы<br /></span>
+            <AnimatedGradientText>за 15 минут в день.</AnimatedGradientText>
           </h1>
           
           <p className="mt-6 text-lg md:text-xl text-[#A0A7B4] max-w-xl mx-auto lg:mx-0 min-h-[60px]">
@@ -558,10 +554,10 @@ const Hero: React.FC = () => {
                   (window as any).gtag_report_conversion();
                 }
               }}
+              className="w-full sm:w-auto inline-flex justify-center px-6 py-3.5 rounded-xl font-semibold text-white hover:opacity-95 hover:shadow-lg hover:shadow-[#8B5CF6]/35 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:ring-offset-2 focus:ring-offset-[#0B0F1A]"
+              style={{ background: 'linear-gradient(90deg, #0EA5E9 0%, #8B5CF6 40%, #EC4899 70%, #F97316 100%)' }}
             >
-              <Button variant="primary" className="w-full sm:w-auto">
-                Попробовать бесплатно
-              </Button>
+              Начать бесплатно
             </a>
             <Link to="/guides" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 text-white hover:text-[#A0A7B4] transition-colors group">
               <svg className="w-5 h-5 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
@@ -574,9 +570,7 @@ const Hero: React.FC = () => {
 
         {/* Right - Mock Dashboard with 3D Tilt */}
         <AnimatedSection className="relative">
-          {/* Floating Notifications */}
           <FloatingNotifications />
-          
           <div 
             ref={tiltRef}
             className="bg-[#1a1a1a] rounded-xl overflow-hidden shadow-2xl"

@@ -16,9 +16,9 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-[#0B0F1A]/80 backdrop-blur-lg">
+    <header className="sticky top-0 z-50 bg-transparent">
       <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 py-3 md:py-4">
-        <div className="flex justify-between items-center border-b border-white/10 pb-3 md:pb-4">
+        <div className="flex justify-between items-center pb-3 md:pb-4">
           <div className="flex items-center gap-2 flex-shrink-0">
             <img src="/logo/logo.png" alt="Neosmart" className="h-7 sm:h-8 w-auto" />
             <span className="text-lg sm:text-xl font-bold text-white">Neosmart</span>
@@ -63,7 +63,7 @@ const Header: React.FC = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden pt-4 pb-4 space-y-4 border-t border-white/10 mt-3">
+          <div className="md:hidden pt-4 pb-4 space-y-4 mt-3">
             <nav className="flex flex-col space-y-4">
               <a 
                 href="#solutions" 

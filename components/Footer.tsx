@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#0B0F1A] border-t border-white/10">
+    <footer className="bg-transparent">
       <div className="container mx-auto px-6 md:px-12 lg:px-24 py-6">
         <div className="flex flex-col md:flex-row justify-center items-center gap-1 text-center">
           <p className="text-[#A0A7B4] text-sm">
