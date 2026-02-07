@@ -534,8 +534,8 @@ const Hero: React.FC = () => {
         {/* Left - Text */}
         <AnimatedSection className="text-center lg:text-left">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15]">
-            <span className="text-white">Наведите порядок в расписании и финансах вашей школы<br /></span>
-            <AnimatedGradientText>за 15 минут в день.</AnimatedGradientText>
+            <span className="text-white">CRM для образовательных центров.<br /></span>
+            <AnimatedGradientText>Автоматизация за 15 минут в день.</AnimatedGradientText>
           </h1>
           
           <p className="mt-6 text-lg md:text-xl text-[#A0A7B4] max-w-xl mx-auto lg:mx-0 min-h-[60px]">
@@ -544,9 +544,9 @@ const Hero: React.FC = () => {
           </p>
 
           {/* Buttons */}
-          <div className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4">
+          <div className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start items-start gap-4">
             <a 
-              href="https://app.neosmart.kz" 
+              href="https://app.neosmart.kz/register" 
               target="_blank" 
               rel="noopener noreferrer"
               onClick={() => {
@@ -559,6 +559,7 @@ const Hero: React.FC = () => {
             >
               Начать бесплатно
             </a>
+            
             <Link to="/guides" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 text-white hover:text-[#A0A7B4] transition-colors group">
               <svg className="w-5 h-5 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z"/>
@@ -566,6 +567,11 @@ const Hero: React.FC = () => {
               <span className="font-medium">Смотреть видео</span>
             </Link>
           </div>
+          
+          {/* Trust indicators - clean and simple */}
+          <p className="mt-4 text-sm text-[#6B6B6B] text-center lg:text-left">
+            Без привязки карты • Первый месяц бесплатно • Отмена в любой момент
+          </p>
         </AnimatedSection>
 
         {/* Right - Mock Dashboard with 3D Tilt */}

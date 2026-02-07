@@ -15,8 +15,27 @@ const RequestModal: React.FC<RequestModalProps> = ({ isOpen, onClose }) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState('');
 
-  // URL Google Apps Script - ЗАМЕНИ НА СВОЙ
-  const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL';
+  // ============================================
+  // НАСТРОЙКА TELEGRAM БОТА
+  // ============================================
+  // Как получить эти данные:
+  // 
+  // 1. Создайте бота через @BotFather в Telegram:
+  //    - Напишите /newbot
+  //    - Введите имя бота (например: Neosmart Leads)
+  //    - Введите username бота (например: neosmart_leads_bot)
+  //    - Получите TOKEN (выглядит как: 123456789:ABCdefGHIjklMNOpqrsTUVwxyz)
+  //
+  // 2. Получите CHAT_ID:
+  //    - Напишите что-нибудь своему боту в Telegram
+  //    - Откройте в браузере: https://api.telegram.org/bot<YOUR_TOKEN>/getUpdates
+  //    - Найдите "chat":{"id": ЧИСЛА} - это ваш CHAT_ID
+  //    - Или используйте @userinfobot для получения вашего chat_id
+  //
+  // 3. Замените значения ниже:
+  
+  const TELEGRAM_BOT_TOKEN = '8333512484:AAFErKkT62glOui-YTKFk8IHs5Lk_bBVqkk'; // Замените на токен от @BotFather
+  const TELEGRAM_CHAT_ID = '217841973';     // Замените на ваш chat_id
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,18 +43,38 @@ const RequestModal: React.FC<RequestModalProps> = ({ isOpen, onClose }) => {
     setError('');
 
     try {
-      const response = await fetch(GOOGLE_SCRIPT_URL, {
+      // Формируем красивое сообщение для Telegram
+      const message = `
+🆕 НОВАЯ ЗАЯВКА С САЙТА
+
+👤 Имя: ${formData.name}
+📱 Телефон: ${formData.phone}
+🏢 Компания: ${formData.company || 'Не указана'}
+
+⏰ Дата: ${new Date().toLocaleString('ru-RU')}
+🔗 Источник: ${window.location.href}
+      `.trim();
+
+      // Отправляем в Telegram
+      const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+      
+      const response = await fetch(telegramUrl, {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...formData,
-          date: new Date().toLocaleString('ru-RU'),
-          source: window.location.href,
+          chat_id: TELEGRAM_CHAT_ID,
+          text: message,
+          parse_mode: 'HTML'
         }),
       });
+
+      const data = await response.json();
+
+      if (!data.ok) {
+        throw new Error(data.description || 'Ошибка отправки в Telegram');
+      }
 
       setIsSuccess(true);
       setFormData({ name: '', phone: '', company: '' });
@@ -51,7 +90,8 @@ const RequestModal: React.FC<RequestModalProps> = ({ isOpen, onClose }) => {
         onClose();
       }, 2000);
     } catch (err) {
-      setError('Ошибка отправки. Попробуйте позже.');
+      console.error('Telegram send error:', err);
+      setError('Ошибка отправки. Пожалуйста, напишите нам в WhatsApp или позвоните.');
     } finally {
       setIsSubmitting(false);
     }
@@ -60,11 +100,17 @@ const RequestModal: React.FC<RequestModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+    <div 
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-black/70 backdrop-blur-sm"
         onClick={onClose}
+        aria-hidden="true"
       />
       
       {/* Modal */}
@@ -73,6 +119,7 @@ const RequestModal: React.FC<RequestModalProps> = ({ isOpen, onClose }) => {
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-[#6B6B6B] hover:text-white transition-colors"
+          aria-label="Закрыть модальное окно"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -93,10 +140,10 @@ const RequestModal: React.FC<RequestModalProps> = ({ isOpen, onClose }) => {
         ) : (
           // Form
           <>
-            <h3 className="text-2xl font-bold text-white mb-2">Запросить звонок</h3>
+            <h3 id="modal-title" className="text-2xl font-bold text-white mb-2">Запросить звонок</h3>
             <p className="text-[#A0A7B4] mb-6">Оставьте контакты — перезвоним в течение часа</p>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4" aria-label="Форма запроса звонка">
               <div>
                 <label className="block text-sm text-[#A0A7B4] mb-1">Ваше имя *</label>
                 <input

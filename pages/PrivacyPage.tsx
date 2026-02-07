@@ -1,7 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const PrivacyPage: React.FC = () => {
+  useEffect(() => {
+    // Set page title and meta tags
+    document.title = 'Политика конфиденциальности | Neosmart';
+    
+    // Update meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Политика конфиденциальности Neosmart. Информация о сборе, использовании и защите персональных данных пользователей.');
+    }
+
+    // Update OG tags
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute('content', 'Политика конфиденциальности | Neosmart');
+    }
+
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) {
+      ogDescription.setAttribute('content', 'Политика конфиденциальности Neosmart. Информация о защите персональных данных.');
+    }
+
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) {
+      ogUrl.setAttribute('content', 'https://neosmart.kz/privacy');
+    }
+  }, []);
+
   return (
     <div className="bg-[#0B0F1A] text-white min-h-screen">
       {/* Header */}

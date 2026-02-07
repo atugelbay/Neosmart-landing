@@ -15,6 +15,7 @@ import RequestModal from './components/RequestModal';
 import Preloader from './components/Preloader';
 import HexagonPattern from './components/HexagonPattern';
 import ScrollGradient from './components/ScrollGradient';
+import WhatsAppWidget from './components/WhatsAppWidget';
 
 // Modal Context
 interface ModalContextType {
@@ -33,8 +34,17 @@ export const useModal = () => useContext(ModalContext);
 const GlobalCursorGlow: React.FC = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check if device is mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     const handleMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
       setIsVisible(true);
@@ -48,10 +58,14 @@ const GlobalCursorGlow: React.FC = () => {
     document.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
+      window.removeEventListener('resize', checkMobile);
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, []);
+
+  // Don't render on mobile devices
+  if (isMobile) return null;
 
   return (
     <div
@@ -105,6 +119,9 @@ const App: React.FC = () => {
 
         {/* Request Modal */}
         <RequestModal isOpen={isModalOpen} onClose={closeModal} />
+        
+        {/* WhatsApp Widget */}
+        <WhatsAppWidget />
       </div>
     </ModalContext.Provider>
   );

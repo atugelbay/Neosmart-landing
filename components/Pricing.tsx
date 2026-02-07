@@ -149,7 +149,7 @@ const Pricing: React.FC = () => {
               {/* CTA */}
               <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
                 <a 
-                  href="https://app.neosmart.kz" 
+                  href="https://app.neosmart.kz/register" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   onClick={() => {

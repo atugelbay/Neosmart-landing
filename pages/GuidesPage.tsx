@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AnimatedSection from '../components/AnimatedSection';
 
@@ -82,6 +82,72 @@ const categories = ['Все', 'Настройка', 'Расписание', 'С�
 const GuidesPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('Все');
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Set page title and meta tags
+    document.title = 'Видео-гайды | Neosmart — CRM для образовательных центров';
+    
+    // Update meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Короткие интерактивные видео-уроки по работе с Neosmart CRM. Узнайте, как управлять расписанием, студентами, финансами и абонементами.');
+    }
+
+    // Update OG tags
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute('content', 'Видео-гайды | Neosmart');
+    }
+
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) {
+      ogDescription.setAttribute('content', 'Короткие интерактивные видео-уроки по работе с Neosmart CRM');
+    }
+
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) {
+      ogUrl.setAttribute('content', 'https://neosmart.kz/guides');
+    }
+
+    // Add structured data for video collection
+    const existingScript = document.querySelector('script[type="application/ld+json"]#videos-structured-data');
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.id = 'videos-structured-data';
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": videos.map((video, index) => ({
+          "@type": "VideoObject",
+          "position": index + 1,
+          "name": video.title,
+          "description": video.description,
+          "thumbnailUrl": `https://demo.arcade.software/${video.id}/thumbnail`,
+          "contentUrl": `https://demo.arcade.software/${video.id}`,
+          "embedUrl": `https://demo.arcade.software/${video.id}?embed`,
+          "uploadDate": "2026-01-15",
+          "duration": "PT2M",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Neosmart",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://neosmart.kz/logo/logo.png"
+            }
+          }
+        }))
+      });
+      document.head.appendChild(script);
+    }
+
+    return () => {
+      const script = document.querySelector('#videos-structured-data');
+      if (script) {
+        script.remove();
+      }
+    };
+  }, []);
 
   const filteredVideos = activeCategory === 'Все' 
     ? videos 

@@ -62,26 +62,33 @@ const Onboarding: React.FC = () => {
       </AnimatedSection>
 
       <AnimatedSection className="text-center mt-12 px-4">
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a 
-            href="https://app.neosmart.kz" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            onClick={() => {
-              if (typeof window !== 'undefined' && (window as any).gtag_report_conversion) {
-                (window as any).gtag_report_conversion();
-              }
-            }}
-          >
-            <Button variant="primary" className="px-8 py-3">
-              Попробовать бесплатно
-            </Button>
-          </a>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col items-center gap-2">
+            <a 
+              href="https://app.neosmart.kz/register" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={() => {
+                if (typeof window !== 'undefined' && (window as any).gtag_report_conversion) {
+                  (window as any).gtag_report_conversion();
+                }
+              }}
+            >
+              <Button variant="primary" className="px-8 py-3">
+                Попробовать бесплатно
+              </Button>
+            </a>
+            <div className="flex flex-wrap justify-center gap-x-3 gap-y-1 text-xs text-[#6B6B6B]">
+              <span>✓ Регистрация за 30 секунд</span>
+              <span>✓ Без карты</span>
+              <span>✓ Техподдержка 24/7</span>
+            </div>
+          </div>
+          
           <Button variant="secondary" className="px-8 py-3" onClick={openModal}>
             Запросить звонок
           </Button>
         </div>
-        <p className="mt-3 text-sm text-[#6B6B6B]">Регистрация за 30 секунд</p>
       </AnimatedSection>
     </section>
   );

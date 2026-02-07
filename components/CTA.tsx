@@ -14,21 +14,28 @@ const CTA: React.FC = () => {
           <p className="mt-4 max-w-2xl mx-auto text-lg text-[#A0A7B4]">
             Попробуйте Neosmart и посмотрите, сколько времени и денег вы сэкономите, когда расписание, финансы и ученики находятся под полным контролем.
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="https://app.neosmart.kz" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              onClick={() => {
-                if (typeof window !== 'undefined' && (window as any).gtag_report_conversion) {
-                  (window as any).gtag_report_conversion();
-                }
-              }}
-            >
-              <Button variant="primary" className="text-lg px-8 py-4">
-                Начать бесплатно
-              </Button>
-            </a>
+          <div className="mt-8 flex flex-col sm:flex-row gap-6 justify-center items-center sm:items-start">
+            <div className="flex flex-col items-center gap-3">
+              <a 
+                href="https://app.neosmart.kz/register" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                onClick={() => {
+                  if (typeof window !== 'undefined' && (window as any).gtag_report_conversion) {
+                    (window as any).gtag_report_conversion();
+                  }
+                }}
+              >
+                <Button variant="primary" className="text-lg px-8 py-4">
+                  Начать бесплатно
+                </Button>
+              </a>
+              {/* Micro-copy */}
+              <p className="text-xs text-[#6B6B6B]">
+                Без привязки карты • Отмена в любой момент
+              </p>
+            </div>
+            
             <Button variant="secondary" className="text-lg px-8 py-4" onClick={openModal}>
               Запросить звонок
             </Button>

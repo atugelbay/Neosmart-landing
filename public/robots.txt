@@ -1,11 +1,26 @@
+# Allow all search engines
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://neosmart.kz/sitemap.xml
+# Specific crawl delays for different bots
+User-agent: Googlebot
+Crawl-delay: 0
+Allow: /
+
+User-agent: Yandex
+Crawl-delay: 0
+Allow: /
+
+User-agent: Bingbot
+Crawl-delay: 0
+Allow: /
 
 # Disallow admin and API paths (if any)
 Disallow: /api/
+Disallow: /admin/
+
+# Sitemap
+Sitemap: https://neosmart.kz/sitemap.xml
 
 # Host
 Host: https://neosmart.kz
